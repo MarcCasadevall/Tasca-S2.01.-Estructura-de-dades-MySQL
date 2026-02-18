@@ -1,14 +1,11 @@
--- Create the database
 CREATE DATABASE IF NOT EXISTS pizzeria_db;
 USE pizzeria_db;
 
--- 1. Province Table
 CREATE TABLE province (
     id_province INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(45) NOT NULL
 );
 
--- 2. Locality Table (City)
 CREATE TABLE locality (
     id_locality INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(45) NOT NULL,
@@ -17,7 +14,6 @@ CREATE TABLE locality (
         FOREIGN KEY (id_province) REFERENCES province(id_province)
 );
 
--- 3. Store Table
 CREATE TABLE store (
     id_store INT AUTO_INCREMENT PRIMARY KEY,
     address VARCHAR(100) NOT NULL,
@@ -27,7 +23,6 @@ CREATE TABLE store (
         FOREIGN KEY (id_locality) REFERENCES locality(id_locality)
 );
 
--- 4. Employee Table
 CREATE TABLE employee (
     id_employee INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(45) NOT NULL,
@@ -40,7 +35,6 @@ CREATE TABLE employee (
         FOREIGN KEY (id_store) REFERENCES store(id_store)
 );
 
--- 5. Customer Table
 CREATE TABLE customer (
     id_customer INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(45) NOT NULL,
@@ -53,13 +47,11 @@ CREATE TABLE customer (
         FOREIGN KEY (id_locality) REFERENCES locality(id_locality)
 );
 
--- 6. Pizza Category Table
 CREATE TABLE pizza_category (
     id_category INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(45) NOT NULL
 );
 
--- 7. Product Table
 CREATE TABLE product (
     id_product INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(45) NOT NULL,
@@ -72,7 +64,6 @@ CREATE TABLE product (
         FOREIGN KEY (id_category) REFERENCES pizza_category(id_category)
 );
 
--- 8. Order Table
 CREATE TABLE `order` (
     id_order INT AUTO_INCREMENT PRIMARY KEY,
     order_datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -90,7 +81,6 @@ CREATE TABLE `order` (
         FOREIGN KEY (id_delivery_driver) REFERENCES employee(id_employee)
 );
 
--- 9. Order Details Table (Many-to-Many between Order and Product)
 CREATE TABLE order_detail (
     id_order_detail INT AUTO_INCREMENT PRIMARY KEY,
     id_order INT NOT NULL,
