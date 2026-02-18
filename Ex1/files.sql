@@ -1,11 +1,10 @@
-
 CREATE DATABASE IF NOT EXISTS OpticaDB;
 USE OpticaDB;
 
 CREATE TABLE IF NOT EXISTS Supplier (
   supplier_id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
-  adress VARCHAR(45), -- Nota: Escrito 'adress' tal cual aparece en tu diagrama
+  adress VARCHAR(45),
   fax INT,
   tax_id INT,
   phone VARCHAR(45),
@@ -57,9 +56,11 @@ CREATE TABLE IF NOT EXISTS Glasses (
 
 CREATE TABLE IF NOT EXISTS Sale (
   idSale INT NOT NULL AUTO_INCREMENT,
+  sale_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  total_amount DECIMAL(10,2),
   Customer_customer_id INT NOT NULL,
   Employee_idEmployee INT NOT NULL,
-  Glasses_glasses_id INT NOT NULL, 
+  Glasses_glasses_id INT NOT NULL,  
   
   PRIMARY KEY (idSale),
   CONSTRAINT fk_sale_customer
