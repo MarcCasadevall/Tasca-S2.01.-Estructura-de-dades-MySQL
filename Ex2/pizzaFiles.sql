@@ -1,3 +1,4 @@
+DROP DATABASE pizzeria_db;
 CREATE DATABASE IF NOT EXISTS pizzeria_db;
 USE pizzeria_db;
 
